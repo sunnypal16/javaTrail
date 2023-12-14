@@ -1,0 +1,15 @@
+<<<<<<<<<<<<< list >>>>>>>>>>>>>>>>>>>>>>>>
+
+
+p1 .  BFS AND DFS 
+P2 .  A * SEARCH  anD RECURSIVE 
+P3 .  DECISION TREE
+P4 .  NEURAL NETWORK
+P5 .  SVM( SUPPORT VECTOR MACHINE)
+P6 .  ADABOOST
+P7 .  NIEVE BASE
+P8 .  kNN
+P9 .  ASSOCIATION RULE MINNING 
+
+
+P. LIST

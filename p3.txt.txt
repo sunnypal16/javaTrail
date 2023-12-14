@@ -1,0 +1,31 @@
+<<<<<<<<<<<<decision tree>>>>>>>>>>>>>>>>>>>>>
+
+
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
+
+# Load the dataset (replace this with your dataset)
+data = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.2, random_state=42)
+
+# Build the decision tree
+clf = DecisionTreeClassifier(random_state=42)
+clf.fit(X_train, y_train)
+
+# Evaluate accuracy on test data
+y_pred = clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+# Visualize the decision tree
+plt.figure(figsize=(12, 8))
+plot_tree(clf, feature_names=data.feature_names, class_names=data.target_names, filled=True)
+plt.show()
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
