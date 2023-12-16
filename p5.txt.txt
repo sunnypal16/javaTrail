@@ -1,0 +1,26 @@
+		<<<<<<<<deffie hellman>>>>>>>>>>>>>>>>>
+
+
+
+import random
+
+def generate_key(p, g, private_key):
+    return (g ** private_key) % p
+
+# Example usage
+if _name_ == "_main_":
+    p = 23
+    g = 5
+
+    alice_private_key = random.randint(1, p - 1)
+    alice_public_key = generate_key(p, g, alice_private_key)
+
+    bob_private_key = random.randint(1, p - 1)
+    bob_public_key = generate_key(p, g, bob_private_key)
+
+    alice_shared_secret = generate_key(p, bob_public_key, alice_private_key)
+    bob_shared_secret = generate_key(p, alice_public_key, bob_private_key)
+
+    assert alice_shared_secret == bob_shared_secret
+
+    print("Shared Secret:", alice_shared_secret)

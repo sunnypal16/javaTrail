@@ -1,0 +1,27 @@
+
+		<<<<<<<<<<<RSA>>>>>>>>>>>>
+
+
+import math
+def RSA(p: int, q: int, message: int):
+    n = p * q
+    t = (p1) * (q - 1)
+    for i in range (2, t):
+        if math.gcd (i, t) == 1:
+            e = i
+            break
+
+    print('Public key is :', e);
+    j = 0
+    while True:
+        if (j * e) % t ==1:
+            d = j
+            break
+        j += 1
+
+    print('Private key is :', d);
+    ct = math. fmod ((pow (message, e)),n)
+    print('Encrypted message:',ct)
+    M = math. fmod((pow (ct, d)),n)
+    print('Decrypted message:',M)
+RSA(p=3, q=13, message=10)
