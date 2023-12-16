@@ -32,38 +32,27 @@ print("Cipher Text is : " + encrypt_text(plaintext,n))
 <<<<<<<encryption+decryption>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
+def caesar_encrypt(plaintext, shift):
+    encrypted_text = ""
+    for char in plaintext:
+        if char.isalpha():  # Check if the character is a letter
+            start = ord('a') if char.islower() else ord('A')
+            encrypted_char = chr((ord(char) - start + shift) % 26 + start)
+            encrypted_text += encrypted_char
+        else:
+            encrypted_text += char  # Keep non-alphabetic characters unchanged
+    return encrypted_text
 
-class CeasarCipher(object):
-    """ generated source for class CeasarCipher """
-    @classmethod
-    def main(cls, args):
-        """ generated source for method main """
-        in_ = Scanner(System.in_)
-        print ("Enter the plaintext message without space : ")
-        plainText = in_.nextLine()
-        key = 3
-        plainText = plainText.toUpperCase()
-        plainTextChar = plainText.toCharArray()
-        # Encryption
-        # Encryption
-        i = 0
-        while i < plainTextChar.length:
-            # Encryption
-            plainTextChar[i] = ((((plainTextChar[i]) + key - 65) % 26 + 65))
-            i += 1
-        print ("the Ciphertext message:")
-        cipherText = String.valueOf(plainTextChar)
-        print ("cipherText")
-        plainTextChar = cipherText.toCharArray()
-        # Decryption
-        # Encryption
-        # Decryption
-        i = 0
-        while i < plainTextChar.length:
-            # Encryption
-            # Decryption
-            plainTextChar[i] = ((((plainTextChar[i]) - key - 65) % 26 + 65))
-            i += 1
-        recoveredPlainText = String.valueOf(plainTextChar).lower()
-        print ("Recovered Plaintext message:")
-        print ("recoveredPlainText")
+def caesar_decrypt(ciphertext, shift):
+    return caesar_encrypt(ciphertext, -shift)
+
+# Example usage:
+plaintext = "Hello, World!"
+shift = 3
+encrypted_text = caesar_encrypt(plaintext, shift)
+decrypted_text = caesar_decrypt(encrypted_text, shift)
+
+print("Original:   ", plaintext)
+print("Encrypted:  ", encrypted_text)
+print("Decrypted:  ", decrypted_text)
+
