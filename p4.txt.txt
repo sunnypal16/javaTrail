@@ -1,32 +1,28 @@
-	<<<<<<<<<<<<<<<<<digital signature >>>>>>>>>>>>
+def calculate_metrics(retrieved_set, relevant_set):
+    true_positive = len(retrieved_set.intersection(relevant_set))
+    false_positive = len(retrieved_set.difference(relevant_set))
+    false_negative = len(relevant_set.difference(retrieved_set))
 
+    # (Optional) PPT values:
+    # true_positive = 20
+    # false_positive = 10
+    # false_negative = 30
 
-from cryptography.hazmat.primitives import hashes, serialization
-from cryptography.hazmat.primitives.asymmetric import rsa, padding
+    print("True Positive: ", true_positive,
+          "\nFalse Positive: ", false_positive,
+          "\nFalse Negative: ", false_negative, "\n")
 
-def generate_key_pair():
-    private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
-    public_key = private_key.public_key()
-    return private_key, public_key
+    precision = true_positive / (true_positive + false_positive)
+    recall = true_positive / (true_positive + false_negative)
+    f_measure = 2 * precision * recall / (precision + recall)
 
-def sign_message(private_key, message):
-    return private_key.sign(message.encode(), padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=padding.PSS.MAX_LENGTH), hashes.SHA256())
+    return precision, recall, f_measure
 
-def verify_signature(public_key, message, signature):
-    try:
-        public_key.verify(signature, message.encode(), padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=padding.PSS.MAX_LENGTH), hashes.SHA256())
-        return True
-    except Exception:
-        return False
+retrieved_set = set(["doc1", "doc2", "doc3"])  # Predicted set
+relevant_set = set(["doc1", "doc4"])  # Actually Needed set (Relevant)
 
-# Example usage:
-private_key, public_key = generate_key_pair()
-message_to_sign = "Hello, this is a digitally signed message."
+precision, recall, f_measure = calculate_metrics(retrieved_set, relevant_set)
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+print(f"F-measure: {f_measure}")
 
-# Signing the message
-signature = sign_message(private_key, message_to_sign)
-print("Digital Signature:", signature.hex())
-
-# Verifying the signature
-is_valid = verify_signature(public_key, message_to_sign, signature)
-print("Is Signature Valid?", is_valid)
