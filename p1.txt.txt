@@ -1,53 +1,39 @@
+import nltk # Import NLTK to download stopwords
+from nltk.corpus import stopwords # Import stopwords from NLTK
+
+# Define the documents
+document1 = "The quick brown fox jumped over the lazy dog" document2 = "The lazy dog slept in the sun"
+ 
 
 
-<<<<<<<encryption+decryption>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Get the stopwords for English language from NLTK nltk.download('stopwords')
+stopWords = stopwords.words('english')
+
+# Step 1: Tokenize the documents
+# Convert each document to lowercase and split it into words tokens1 = document1.lower().split()
+tokens2 = document2.lower().split()
+
+# Combine the tokens into a list of unique terms terms = list(set(tokens1 + tokens2))
+
+# Step 2: Build the inverted index
+# Create an empty dictionary to store the inverted index as well as a dictionary to store number of occurrences
+inverted_index = {} occ_num_doc1 = {} occ_num_doc2 = {}
+
+# For each term, find the documents that contain it for term in terms:
+if term in stopWords: continue
+documents = []
+if term in tokens1: documents.append("Document 1") occ_num_doc1[term] = tokens1.count(term)
+if term in tokens2: documents.append("Document 2") occ_num_doc2[term] = tokens2.count(term)
+ 
 
 
-def caesar_encrypt(plaintext, shift):
-    encrypted_text = ""
-    for char in plaintext:
-        if char.isalpha():  # Check if the character is a letter
-            start = ord('a') if char.islower() else ord('A')
-            encrypted_char = chr((ord(char) - start + shift) % 26 + start)
-            encrypted_text += encrypted_char
-        else:
-            encrypted_text += char  # Keep non-alphabetic characters unchanged
-    return encrypted_text
+inverted_index[term] = documents
 
-def caesar_decrypt(ciphertext, shift):
-    return caesar_encrypt(ciphertext, -shift)
+# Step 3: Print the inverted index
+for term, documents in inverted_index.items(): print(term, "->", end=" ")
+for doc in documents:
+if doc == "Document 1":
+print(f"{doc} ({occ_num_doc1.get(term, 0)}),", end=" ") else:
+print(f"{doc} ({occ_num_doc2.get(term, 0)}),", end=" ") print()
+print("Performed by 740_Pallavi & 743_Deepak")
 
-# Example usage:
-plaintext = "Hello, World!"
-shift = 3
-encrypted_text = caesar_encrypt(plaintext, shift)
-decrypted_text = caesar_decrypt(encrypted_text, shift)
-
-print("Original:   ", plaintext)
-print("Encrypted:  ", encrypted_text)
-print("Decrypted:  ", decrypted_text)
-
-
-
-		<<<<<<Rail fence>>>>>>>>>>>>>
-
-def rail_fence_encrypt(plaintext, num_rails):
-    return ''.join(plaintext[i::num_rails] for i in range(num_rails))
-
-def rail_fence_decrypt(ciphertext, num_rails):
-    cycle = len(ciphertext) // (2 * (num_rails - 1))
-    return ''.join(ciphertext[i::num_rails] + ciphertext[i + 2 * (num_rails - 1) - i % (2 * (num_rails - 1))::num_rails] for i in range(cycle + 1))
-
-# Example usage:
-plaintext = "Hello, World!"
-num_rails = 3
-encrypted_text = rail_fence_encrypt(plaintext, num_rails)
-decrypted_text = rail_fence_decrypt(encrypted_text, num_rails)
-
-print("Original:   ", plaintext)
-print("Encrypted:  ", encrypted_text)
-print("Decrypted:  ", decrypted_text)
-
-
-
-<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
