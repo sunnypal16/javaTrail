@@ -1,1 +1,103 @@
+Practical 1 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Aim: Use google and whois for reconnaisasance. 
+1) Open who.is website. 
+2)enter the website name you want to search.  
+3) Show your information about mensxp.com 
+
+practical 2>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Password Encryption and Cracking with CrypTool and Cain and Abel  
+1.Password Encryption and Decryption:  
+• Use CrypTool to encrypt passwords using the RC4 algorithm.  
+• Decrypt the encrypted passwords and verify the original values.  
+2. Password Cracking and Wireless Network Password Decoding:  
+• Use Cain and Abel to perform a dictionary attack on Windows account passwords.  
+• Decode wireless network passwords using Cain and Abel's capabilities.  
+1. crypTool  
+Step 1: Open crypTool on your computer.  
+Step 2: Deleted all the text by default and type the text you want to encrypt 
+Step3: Click on the “Encrypt/ Decrypt” tab and select “Symmetric(modern)” option and in that 
+option click on “RC4” and click “encrypt”.  
+Encrypt/Decrypt > Symmetric(modern) > RC4 > Encrypt  
+Step 4: You will see the encrypted text . Now Again click on Encrypt/Decrypt option and follow 
+the below sequence of options to select.  
+Encrypt/Decrypt > Symmetric(modern) > RC4 > Decrypt 
+Step 5: You will see the original plaintext. 
+
+
+PRACTICAL NO. 3  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+• Linux Network Analysis and ARP Poisoning  
+1. Linux Network Analysis:  
+a. Execute the ifconfig command to retrieve network interface information.  
+b. Use the ping command to test network connectivity and analyze the output 
+c. Analyze the netstat command output to view active network connections.  
+d. Perform a traceroute to trace the route packets take to reach a target host. 
+2. ARP Poisoning:  
+a. Use ARP poisoning techniques to redirect network traffic on a Windows system.  
+i. Use arp-a command on linux as well as windows to chack available connections with MAC 
+addresses.  
+ii. Now open Ettercap on kali linux and startsniffing for available hosts. 
+iii. Now set the targets which is windows machine.  
+iv. Now select Man-in-the-Middle attack (MITM) and select ARP Poisoning 
+v. Select “Sniffremote connections.” 
+vi. Now open the wireshark app in linux to trace ARP Poisoning packets. 
+vii. The linux wireshark trace the packets sent by the windows for more details see below picture.  
+b. Analyze the effects of ARP poisoning on network communication and security. 
+i. The MAC address of sender gets change due to ARP Poisoning  
+ii. The changes I OPCODE  
+Note: Normally the {OPCODE: request (1)} but after poisoning the its {OPCODE: request (2)} as 
+linux sent unwanted response that windows never asked for.
+
+
+
+PRACTICAL NO. 4  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Port Scanning with Nmap 
+A. Use NMap to perform an ACK scan to determine if a port is filtered, unfiltered, or open.  
+NOTE: Install Nmap for windows and install it. After that open cmd and type “nmap” to check 
+if it is installed properly. Now type the below commands.  
+1. ACK -sA (TCP ACK scan)  
+It never determines open (or even open|filtered) ports. It is used to map out firewall rulesets, 
+determining whether they are stateful or not and which ports are filtered.  
+Command: nmap -sA -T4 www.google.com 
+B. Perform SYN, FIN, NULL, and XMAS scans to identify open ports and their characteristics.  
+1. SYN (Stealth) Scan (-sS)  
+SYN scan is the default and most popular scan option for good reason. It can be performed quickly, 
+scanning thousands of ports per second on a fast network not hampered by intrusive firewalls.  
+Command: nmap -p22,113,139 www.google.com  
+2. FIN Scan (-sF)  
+Sets just the TCP FIN bit.     Command: nmap -sF -T4 www.google.com 
+3. NULL Scan (-sN) 
+Does not set any bits (TCP flag header is 0)  
+Command: nmap –sN –p 22 scanme.nmap.org  
+4. XMAS Scan (-sX) Sets the FIN, PSH, and URG flags, lighting the packet up like a Christmas tree. 
+Command: nmap -sX -T4 www.google.com 
+
+
+Practical 5 
+Network Traffic Capture and DoS Attack with Wireshark and Nemesy  
+A. Network Traffic Capture:  
+Use Wireshark to capture network traffic on a specific network interface.  
+Analyze the captured packets to extract relevant information and identify potential security 
+issues.  
+Open Wireshark software and select interface. 
+Open any http website and add display filter as http. 
+Right click on packet >> POST method >> Follow >> TCP stream  
+Search for ‘credentials’ in the dialog box. 
+B. Denial of Service (DoS) Attack:  
+Use Nemesy to launch a DoS attack against a target system or network.  
+Observe the impact of the attack on the target's availability and performance.  
+• Open Nemesy software and enter target IP, number of packets , size of packet, delay 
+between packets.  
+(r – random packet size)  
+• Also, you can use the hping3 tool which is available in kali Linux for DoS attack.  -S : SYN flag  --flood : sent packets as fast as possible. Don't show replies.  -V : verbose mode  -p : destination port (default 0) 
+
+
+
+
+
+
+
+
+
+
 
