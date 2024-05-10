@@ -1,0 +1,16 @@
+saledate.csv
+titanic.csv
+year of experiance
+agemark.csv
+bikesellprice
+bikesellprice.csv
+car_data.csv
+country.csv
+decisiontreearregression
+featureumminification
+iris model performace
+k meanssilho
+linearagreesiononisi
+logistics
+modelwtc
+nameage
