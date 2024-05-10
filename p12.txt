@@ -1,0 +1,387 @@
+<oneway anova>>>>>>
+
+from scipy.stats import f_oneway
+
+# Exam scores for each class
+class_A = [85, 90, 88, 82, 87]
+class_B = [76, 78, 80, 81, 75]
+class_C = [92, 88, 94, 89, 90]
+
+# Perform one-way ANOVA test
+f_statistic, p_value = f_oneway(class_A, class_B, class_C)
+
+# Print the results
+print("F-statistic:", f_statistic)
+print("p-value:", p_value)
+
+# Interpret the results
+alpha = 0.05  # significance level
+
+if p_value < alpha:
+    print("Reject the null hypothesis. There is a significant difference in the mean exam scores among the classes.")
+else:
+    print("Fail to reject the null hypothesis. There is no significant difference in the mean exam scores among the classes.")
+
+
+
+
+<<<pc analysis>>>>>>>>
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+from sklearn.datasets import load_wine
+
+# Load the Wine Quality dataset
+wine_data = load_wine()
+X = wine_data.data
+y = wine_data.target
+
+# Standardize the features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Perform PCA
+pca = PCA()
+X_pca = pca.fit_transform(X_scaled)
+
+# Plot explained variance ratio
+plt.figure(figsize=(10, 6))
+plt.plot(np.cumsum(pca.explained_variance_ratio_), marker='o', linestyle='-')
+plt.xlabel('Number of Components')
+plt.ylabel('Cumulative Explained Variance')
+plt.title('Explained Variance Ratio')
+plt.grid(True)
+plt.show()
+
+# Select appropriate number of principal components
+explained_variance_ratio = pca.explained_variance_ratio_
+cumulative_explained_variance = np.cumsum(explained_variance_ratio)
+num_components = np.argmax(cumulative_explained_variance >= 0.95) + 1
+print("Number of principal components to explain 95% variance:", num_components)
+
+# Visualize data in the reduced-dimensional space
+plt.figure(figsize=(10, 6))
+for label in np.unique(y):
+    plt.scatter(X_pca[y == label, 0], X_pca[y == label, 1], label=f'Class {label}', alpha=0.7)
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.title('PCA of Wine Quality Dataset')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+
+
+
+
+<year of experiance>>>>>>>>>>>
+
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Data
+X = np.array([2, 10, 4, 20, 8, 12, 22]).reshape(-1, 1)  # Years of Experience
+y = np.array([30000, 95000, 45000, 178000, 84000, 120000, 200000])  # Salary
+
+# Linear Regression Model
+model = LinearRegression()
+
+# Fit the model
+model.fit(X, y)
+
+# Predict for some years of experience
+years_of_experience = [[5], [15]]  # You can add more values for prediction
+predicted_salaries = model.predict(years_of_experience)
+
+# Print the predicted salaries
+for i, years in enumerate(years_of_experience):
+    print("For {} years of experience, predicted salary is: ${:,.2f}".format(years[0], predicted_salaries[i]))
+
+
+
+
+<<<<<<age mark>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<csv>>>>
+Rolbo,Name,Age,Marks,Class
+1,WM,44,47,FY
+2,Shaima,46,86,SY
+3,RIliDA,27,45,TY
+4,Paul,38,,SY
+5,"Raba,",46,45,FY
+6,Gopal,,67,TY
+7,Yatia,59,45,FY
+8,Jim,36,34,FY
+9,Mina,45,32,TY
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+import pandas as pd
+
+# Read the data from the CSV file into a DataFrame
+df = pd.read_csv('agemarks.csv')
+
+# Perform data pre-processing tasks
+# Handling missing values
+df.dropna(inplace=True)  # Drop rows with missing values
+
+# Handling outliers
+# For example, remove rows where 'Marks' column is an outlier
+z_scores = (df['Marks'] - df['Marks'].mean()) / df['Marks'].std()
+df = df[(z_scores < 3)]  # Keep rows where the z-score is less than 3
+
+# Print the pre-processed DataFrame
+print(df)
+
+
+
+<<<bike sell price>>>>>>>>>>
+
+
+import pandas as pd
+
+# Read the data from the CSV file into a DataFrame
+df = pd.read_csv('bikesellpricebuypricee.csv')
+
+# Perform transformations
+# Display records of the bike having Buy Price greater than equal to 3000
+print("Records of bikes with Buy Price greater than or equal to 3000:")
+print(df[df['Buy Price'] >= 3000])
+
+# Sort the bike data in ascending order
+df_sorted = df.sort_values(by='Buy Price', ascending=True)
+print("\nBike data sorted in ascending order of Buy Price:")
+print(df_sorted)
+
+# Group the data according to the "Model" of bike
+grouped_data = df.groupby('Model')
+print("\nGrouped data according to the Model of bike:")
+for model, group in grouped_data:
+    print("\nModel:", model)
+    print(group)
+
+
+<<<<<<decision tree classification>
+
+
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Initialize the Decision Tree classifier
+clf = DecisionTreeClassifier()
+
+# Train the classifier
+clf.fit(X, y)
+
+# Plot the Decision Tree
+plt.figure(figsize=(10, 7))
+plot_tree(clf, filled=True, feature_names=iris.feature_names, class_names=iris.target_names)
+plt.show()
+
+
+
+<<decision tree reggreassionheight>
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+import matplotlib.pyplot as plt
+
+# Load Titanic dataset (assuming it's in CSV format)
+titanic_data = pd.read_csv("titanic.csv")
+
+# Drop irrelevant columns or handle missing values as needed
+
+# Convert categorical variables to numerical representation using one-hot encoding or label encoding
+
+# Split dataset into features and target variable
+X = titanic_data.drop(columns=['Survived'])  # Features
+y = titanic_data['Survived']  # Target variable
+
+# Split dataset into training set and test set
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Initialize the Decision Tree classifier
+clf = DecisionTreeClassifier()
+
+# Train the classifier on the training data
+clf.fit(X_train, y_train)
+
+# Plot the Decision Tree
+plt.figure(figsize=(12, 8))
+plot_tree(clf, filled=True, feature_names=X.columns, class_names=['Not Survived', 'Survived'])
+plt.show()
+
+
+
+
+<feature classificaion>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+import pandas as pd
+
+# Create the dataset
+data = {
+    'Country': ['France', 'Spain', 'Germany', 'Spain', 'Germany', 'France', 'Spain', 'France', 'Germany', 'France'],
+    'Age': [44, 27, 30, 38, 40, 35, 31, 48, 50, 37],
+    'Salary': [72000, 48000, 54000, 61000, 85000, 58000, 52000, 79000, 83000, 67000],
+    'Purchased': ['No', 'Yes', 'No', 'No', 'Yes', 'Yes', 'No', 'Yes', 'No', 'Yes']
+}
+
+# Convert the dataset to a pandas DataFrame
+df = pd.DataFrame(data)
+
+# Perform one-hot encoding (feature dummification) on the 'Country' column
+df = pd.get_dummies(df, columns=['Country'])
+
+# Convert 'Purchased' column to numerical representation (1 for 'Yes', 0 for 'No')
+df['Purchased'] = df['Purchased'].map({'Yes': 1, 'No': 0})
+
+print(df)
+
+
+
+
+<<<iris model perforane>>>>>>>>>>>>>>>>>>>>>>
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, accuracy_score
+from sklearn.datasets import load_iris
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize and train the Logistic Regression model
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Predict the classes for the test set
+y_pred = model.predict(X_test)
+
+# Evaluate the model's performance
+accuracy = accuracy_score(y_test, y_pred)
+report = classification_report(y_test, y_pred, target_names=iris.target_names)
+
+print("Accuracy:", accuracy)
+print("Classification Report:\n", report)
+
+
+
+
+<iris logistic regression>>>>>>>>>>>>>>>>>>>
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, accuracy_score
+from sklearn.datasets import load_iris
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize and train the Logistic Regression model
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Predict the classes for the test set
+y_pred = model.predict(X_test)
+
+# Evaluate the model's performance
+accuracy = accuracy_score(y_test, y_pred)
+report = classification_report(y_test, y_pred, target_names=iris.target_names)
+
+print("Accuracy:", accuracy)
+print("Classification Report:\n", report)
+
+
+
+
+<kmeansssiibutt>>>>>>>>>>>>>>>>>>
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Standardize the features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Perform PCA for visualization purposes
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+# Determine optimal number of clusters using Silhouette analysis
+silhouette_scores = []
+for n_clusters in range(2, 11):
+    kmeans = KMeans(n_clusters=n_clusters, random_state=42)
+    cluster_labels = kmeans.fit_predict(X_scaled)
+    silhouette_avg = silhouette_score(X_scaled, cluster_labels)
+    silhouette_scores.append(silhouette_avg)
+
+# Plot Silhouette scores
+plt.figure(figsize=(10, 6))
+plt.plot(range(2, 11), silhouette_scores, marker='o', linestyle='-')
+plt.xlabel('Number of Clusters')
+plt.ylabel('Silhouette Score')
+plt.title('Silhouette Analysis for Optimal Number of Clusters')
+plt.grid(True)
+plt.show()
+
+# Choose the number of clusters with the highest silhouette score
+optimal_num_clusters = np.argmax(silhouette_scores) + 2
+print("Optimal number of clusters:", optimal_num_clusters)
+
+# Apply K-means algorithm with optimal number of clusters
+kmeans = KMeans(n_clusters=optimal_num_clusters, random_state=42)
+cluster_labels = kmeans.fit_predict(X_scaled)
+
+# Visualize clustering results
+plt.figure(figsize=(10, 8))
+for i in range(optimal_num_clusters):
+    plt.scatter(X_pca[cluster_labels == i, 0], X_pca[cluster_labels == i, 1], label=f'Cluster {i+1}')
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], marker='x', s=200, color='red', label='Centroids')
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.title('Clustering Results using K-means')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
