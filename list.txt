@@ -1,16 +1,26 @@
-saledate.csv
+onewayANOVA
+PCAaalysis
+regionsales.csv
+restaurantt.csv
+Restaurantt
+salesdata.csv
 titanic.csv
-year of experiance
-agemark.csv
-bikesellprice
-bikesellprice.csv
+years of experience
+agemarks.csv
+agemarks
+bikesellpricebuyprice
+bikesellpricebuypricee.csv
 car_data.csv
-country.csv
-decisiontreearregression
-featureumminification
-iris model performace
-k meanssilho
-linearagreesiononisi
-logistics
-modelwtc
+countryagesalay.csv
+decisionrulesofclassification
+
+decisiontreelinearregressiondheightweight
+featuredummification
+iris model performance
+irislogisticregression
+Kmeanssilhoutte
+linearregressionPETALwidth
+logisticregressioniris
+Modelwtc
 nameage
+  
